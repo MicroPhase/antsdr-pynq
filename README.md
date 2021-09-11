@@ -290,7 +290,7 @@ name = "Analog Devices Hardware Interfaces"
 ## Example to interact with ad9361
 
 Now we can, write a simple script to  interact with ad9361.
-
+This demo is originally from [PySDR](https://pysdr.org/content/pluto.html)
 ```py
 import numpy as np
 import adi
@@ -359,6 +359,17 @@ plt.ylabel("PSD")
 plt.show()
 ```
 ![result](images/result.png)
+
+## Work to be done
+ 
+ This is the first open source PYNQ project to control AD9361, as you  can see, there are still a lot of thins need to do. I am waiting for your contribution.
+
+ - TODO
+   - libiio package build into the pynq image
+   -  python code for pynq demo
+   -  RF performance measurement
+   -  HDL project  and devicetree  improvement.(The hdl project is mainly based on fmcomms2/3/4+zed)
+
 
 
 ## Licenses
