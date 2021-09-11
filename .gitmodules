@@ -1,0 +1,9 @@
+[submodule "pynq"]
+	path = pynq
+	url = https://github.com/MicroPhase/PYNQ.git
+	branch = image_v2.4
+
+[submodule "meta-adi"]
+	path = meta-adi
+	url = https://github.com/analogdevicesinc/meta-adi.git
+	branch = 2019_R1
