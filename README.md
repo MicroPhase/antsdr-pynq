@@ -1,7 +1,7 @@
 
 # PYNQ Framework for ANTSDR
 
-![alt tag](images/logo.png)
+![alt tag](./images/logo.png)
 
 This project  was inspired by [PYNQ](https://github.com/Xilinx/PYNQ) and  [PlutoSDR](https://github.com/analogdevicesinc/plutosdr-fw.git).  There are already many SDR platforms based on ZYNQ and AD9361,  so does ANTSDR.
 
@@ -18,6 +18,7 @@ In this section, I will briefly introduce how to make PYNQ SD card Image for ANT
 	-  Vivado 2018.3 (intall path /opt/Xilinx)
 	-  petalinux 2018.3 (intall path /opt/pkg/petalinux/2018.3)
 	-  PYNQ branch image_v2.4
+  
 	You should install the required software into the corresponding path .
 
 
@@ -47,12 +48,13 @@ Now you can build the image from scratch, you can either build from source code 
         mkdir sdbuild/prebuilt
         unzip -d  sdbuild/prebuilt  pynq_rootfs_arm_v2.4.zip
         cd sdbuild
-        make BOARDS=../../antsdr  PREBUILT=./prebuilt/bionic.arm.2.4.img
+        cp -r  ../../antsdr  ../boards/
+        make BOARDS=antsdr  PREBUILT=./prebuilt/bionic.arm.2.4.img
         ```
 	- Build from source code
         ```bash
         cd sdbuild
-        make BOARDS=ANTSDR 
+        make BOARDS=antsdr
         ```
 	You can find the output image **antsdr-2.4.img** in the **sdbuild/output** folder.
 
@@ -71,7 +73,9 @@ Once you have finished building the image, you can let ANTSDR to become a  PYNQ 
 - Boot up antsdr 
 
 You should insert the SD card into antsdr, connect antsdr to the router with a network cable(the antsdr needs to acess to the internet for building libiio from source), connect to the serial port of antsdr and computer with usb, and power on.
+
 ![antsdr connection](images/connect_antsdr.png)
+
 From the serial port terminal, you can see the printed information about PYNQ startup.
 
 Once the PYNQ boot up, you can interact with antsdr through serial port.
