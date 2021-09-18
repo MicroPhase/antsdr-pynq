@@ -40,7 +40,8 @@ In this section, I will briefly introduce how to make PYNQ SD card Image for ANT
 	```
 
 - Build the SD card Image
-Now you can build the image from scratch, you can either build from source code or build from offline root file system. I would recommend the second way.
+  
+  Now you can build the image from scratch, you can either build from source code or build from offline root file system. I would recommend the second way.
 	- Build from offline rootfs 
 	You can download the offline PYNQ rootfs from this link: https://www.xilinx.com/member/forms/download/xef.html?filename=pynq_rootfs_arm_v2.4.zip.
 	You can unzip this file to a folder and start to build the image. For example
@@ -57,6 +58,14 @@ Now you can build the image from scratch, you can either build from source code 
         make BOARDS=antsdr
         ```
 	You can find the output image **antsdr-2.4.img** in the **sdbuild/output** folder.
+
+- Trouble shutting
+  - if the result returns a environment error, this could be caused by the petalinux environment settings.<br>
+  you should configure the dash.
+  ```
+    sudo dpkg-reconfigure dash    
+    (then choose no)
+  ```
 
 ## Setup the PYNQ for antsdr
 
@@ -351,8 +360,8 @@ f = np.linspace(sample_rate/-2, sample_rate/2, len(psd))
 
 # Plot time domain
 plt.figure(0)
-plt.plot(np.real(rx_samples[::50]))
-plt.plot(np.imag(rx_samples[::50]))
+plt.plot(np.real(rx_samples[:200:1]))
+plt.plot(np.imag(rx_samples[:200:1]))
 plt.xlabel("Time")
 
 # Plot freq domain
