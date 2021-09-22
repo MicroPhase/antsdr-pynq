@@ -15,8 +15,8 @@ In this section, I will briefly introduce how to make PYNQ SD card Image for ANT
 
 - Pre-conditions:
 	- Host computer: Ubuntu16.04 LTS ( this is the tested version)
-	-  Vivado 2018.3 (intall path /opt/Xilinx)
-	-  petalinux 2018.3 (intall path /opt/pkg/petalinux/2018.3)
+	-  Vivado 2018.3 (install path /opt/Xilinx)
+	-  petalinux 2018.3 (install path /opt/pkg/petalinux/2018.3)
 	-  PYNQ branch image_v2.4
   
 	You should install the required software into the corresponding path .
@@ -205,8 +205,8 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 As you can see, there are 2 ip address for the ethernet port, the first one is the dynamic IP address if antsdr are connected to a router.
 The second one is the static IP address for antsdr.
 
-If you use the first ip address, to access the antsdr, you should type the ip address in your browser, by dynamic IP or static IP,
-for example:192.168.3.229:9090  for dynamic IP 
+If you use the first ip address to access the antsdr, you should type the ip address in your browser.
+for example:192.168.3.229:9090  for dynamic IP.
 or 192.168.2.99 for static IP(ethernet cable should connect directly to the computer).
 
 By default, the password is **xilinx**.
