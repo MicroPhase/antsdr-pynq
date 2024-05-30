@@ -1,4 +1,13 @@
 # PYNQ image for AntSDR
+
+## PYNQ Image
+
+You can download the pynq image for antsdr_e200 and antsdr_e310 using following links:
+
+中国用户：百度网盘链接: https://pan.baidu.com/s/1tN0z5ysrIDqiILCVQ6oW5g?pwd=si9y 提取码: si9y 
+
+Foreign users, use pcloud: https://e.pcloud.link/publink/show?code=kZOI7TZsFHJaEPgb1jBTQRKHnclPjjPIHyX
+
 ## Build instruction
 
 In this section, I will briefly introduce how to make PYNQ SD card Image for ANTSDR. For detail information, please refer to PYNQ SD card.
@@ -12,6 +21,7 @@ Pre-conditions:
 You should install the required software into the corresponding path .
 
 - Set up the host
+
 ```bash
 cd PYNQ/sdbuild/scripts/
 ./setup_host.sh
@@ -45,22 +55,27 @@ Once PYNQ image is ready, you can find e200's PYNQ image at output folder.
 Burn that image into a SD Card.
 
 ## Special Note for E200
+
 The Ethernet of E200 is located at PL side, the default Boot.BIN doesn't contain bitstream, this will cause the ethernet could not be detected at boot time, so we need to package bitstream into the Boot.BIN file.
 We have a folder `e200_boot_gen`, you can created the Boot.BIN file using this folder.
+
 ```bash
 cd e200_boot_gen
 make sdimg
 ```
+
 You can find the BOOT.BIN file at `build_sdimg` folder. 
 Now you can replace the BOOT.bin file in the boot partition of the SD card with the generated BOOT.BIN file.
 
 
 ## Setup PYNQ for AntSDR
+
 You should insert the SD card into antsdr, connect antsdr to the router with a network cable(the antsdr needs to acess to the internet for building libiio from source at first time), connect to the serial port of antsdr and computer with usb, and power on.
 
 From the serial port terminal, you can see the printed information about PYNQ startup.
 
 Once the PYNQ boot up, you can interact with antsdr through serial port.
+
 ```bash
 xilinx@pynq:~$ ls
 jupyter_notebooks  pynq  REVISION
@@ -89,12 +104,16 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 
 xilinx@pynq:~$
 ```
+
 You need to connect the ethernet cable to a router, the following steps will needs antsdr to have an access to network.
+
 ```bash
 sudo apt update
 sudo apt install libxml2 libxml2-dev bison flex cmake git libaio-dev libboost-all-dev libusb-1.0-0-dev libavahi-common-dev libavahi-client-dev
 ```
+
 - Build and install libiio from source: 
+
 ```bash
 git clone -b v0.24 https://github.com/analogdevicesinc/libiio.git
 cd libiio
@@ -116,7 +135,9 @@ make
 sudo make install
 cd ../..
 ```
+
 - Install pyadi-iio
+
 ```bash
 pip3 install pylibiio
 pip3 install pyadi-iio
@@ -125,8 +146,10 @@ sudo pip3 install pyadi-iio
 ```
 
 ## FPGA bitstream reload and devicetree overlay
+
 Since reloading the bit file each time can cause the IIO driver to not work properly, it is necessary to dynamically load the drivers related to AD9361 using device tree overlay. This requires the use of device tree plugins.
 You should build the devicetree overlay at your host computer, inside the project, we have a PYNQ-PRIO folder, this folder will help us build the dtbo file.
+
 ```bash
 wcc@wcc-pc:~/wcc_demo/PYNQ/PYNQ-PRIO$ tree -L 2
 .
@@ -151,11 +174,15 @@ wcc@wcc-pc:~/wcc_demo/PYNQ/PYNQ-PRIO$ tree -L 2
 cd PYNQ-PRIO/device_tree_overlays
 ./install.sh
 ```
+
 Now we can create our overlay:
+
 ```bash
 make BOARDS=e200
 ```
+
 You can find the pl.dtbo file at e200's subfolder.
+
 ```bash
 wcc@wcc-pc:~/wcc_demo/PYNQ/PYNQ-PRIO/boards/e200$ tree -L 3
 .
@@ -167,7 +194,9 @@ wcc@wcc-pc:~/wcc_demo/PYNQ/PYNQ-PRIO/boards/e200$ tree -L 3
 ```
 
 ## HDL base project
+
 If you need to develop your own FPGA project, the basic project for E200 is available in the [following link](https://github.com/MicroPhase/hdl/tree/antsdr_fmcomms), this could be your starting point of your own project.
+
 ```bash
 git clone -b antsdr_fmcomms https://github.com/MicroPhase/hdl.git
 source /opt/Xilinx/Vivado/2021.1/settings64.sh 
