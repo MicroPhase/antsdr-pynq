@@ -1,0 +1,24 @@
+
+/dts-v1/;
+/plugin/;
+
+/{
+	compatible = "xlnx,zynqmp";
+
+	fragment@0 {		
+		target = <&amba>;
+
+		__overlay__ {
+
+			 pr_3_uart {
+			    compatible = "xlnx,xps-uartlite-1.00.a";
+		    	interrupt-parent = <&gic>;
+				interrupts = < 0x0 0x5d 0x1 >;	
+				reg = <0x0 0x80130000 0x0 0x10000>;
+
+			    clock = <100000000>;
+			};
+ 
+		};
+	};
+};

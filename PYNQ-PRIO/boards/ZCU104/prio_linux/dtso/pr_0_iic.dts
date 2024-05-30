@@ -1,0 +1,24 @@
+/dts-v1/;
+/plugin/;
+
+/{
+	compatible = "xlnx,zynqmp";
+
+	fragment@0 {		
+		target = <&amba>;
+
+		__overlay__ {
+
+			pr_0_iic {
+		    	compatible = "xlnx,xps-iic-2.00.a";
+		    	clocks = <&misc_clk_1>;
+		    	interrupt-parent = <&gic>;
+				interrupts = < 0x0 0x5a 0x4 >;	
+				reg = <0x0 0x80100000 0x0 0x10000 >;
+		    	#address-cells = <1>;
+		    	#size-cells = <0>;
+
+	    	};
+		};
+	};
+};

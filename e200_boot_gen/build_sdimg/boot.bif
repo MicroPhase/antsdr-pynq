@@ -1,0 +1,1 @@
+img : {[bootloader] ./zynq_fsbl.elf  system_top.bit  u-boot.elf [load=0x00100000]system.dtb}

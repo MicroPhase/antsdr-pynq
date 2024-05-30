@@ -1,0 +1,31 @@
+
+/dts-v1/;
+/plugin/;
+
+/{
+	compatible = "xlnx,zynq-7000";
+
+	fragment@0 {
+		target = <&amba>;
+
+		__overlay__ {
+
+			gpio_base_leds {
+				#gpio-cells = <2>;
+				compatible = "xlnx,xps-gpio-1.00.a";
+				gpio-controller ;
+				reg = < 0x41250000 0x10000 >;
+				xlnx,all-inputs = <0x0>;
+				xlnx,all-inputs-2 = <0x0>;
+				xlnx,dout-default = <0x0>;
+				xlnx,dout-default-2 = <0x0>;
+				xlnx,gpio-width = <0x4>;
+				xlnx,gpio2-width = <0x20>;
+				xlnx,interrupt-present = <0x0>;
+				xlnx,is-dual = <0x0>;
+				xlnx,tri-default = <0xffffffff>;
+				xlnx,tri-default-2 = <0xffffffff>;
+    	};
+		};
+	};
+};

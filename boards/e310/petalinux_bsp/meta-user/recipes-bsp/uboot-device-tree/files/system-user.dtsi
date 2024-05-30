@@ -1,0 +1,17 @@
+/include/ "system-conf.dtsi"
+/ {
+    model = "MicroPhase, ANTSDR-E200";
+
+	aliases {
+		ethernet0 = &gem0;
+		serial0 = &uart0;
+		serial1 = &uart1;
+		spi0 = &qspi;
+		spi1 = &spi0;
+		spi2 = &spi1;
+	};
+	memory {
+		device_type = "memory";
+		reg = <0x00000000 0x20000000>;
+	};
+};
