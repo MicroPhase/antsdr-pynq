@@ -1,4 +1,4 @@
-[submodule "pynq"]
-	path = pynq
+[submodule "PYNQ"]
+	path = PYNQ
 	url = https://github.com/Xilinx/PYNQ.git
-	branch = v0.3.0.1
+	branch = v3.0.1 
